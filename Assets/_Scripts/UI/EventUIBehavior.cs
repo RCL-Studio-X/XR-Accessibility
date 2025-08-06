@@ -1,5 +1,4 @@
 using UnityEngine;
-using HurricaneVR.Framework.Core.Player;
 
 [RequireComponent(typeof(Canvas))]
 public class EventUIBehavior : MonoBehaviour, IUIBehavior
@@ -9,7 +8,7 @@ public class EventUIBehavior : MonoBehaviour, IUIBehavior
     public Vector3 additionalOffset = Vector3.zero;
 
     [Header("Player Control")]
-    public HVRPlayerController playerController;
+    //public HVRPlayerController playerController;
 
     [Header("Visual Effects (optional)")]
     public bool enableDarkenEffect = false;
@@ -39,10 +38,10 @@ public class EventUIBehavior : MonoBehaviour, IUIBehavior
                 cameraTransform = mainCamera.transform;
         }
 
-        if (playerController == null)
-        {
-            playerController = FindObjectOfType<HVRPlayerController>();
-        }
+        //if (playerController == null)
+        //{
+        //    playerController = FindObjectOfType<HVRPlayerController>();
+        //}
     }
 
     private void SetupUILayer()
@@ -127,25 +126,25 @@ public class EventUIBehavior : MonoBehaviour, IUIBehavior
 
     private void PausePlayer()
     {
-        if (playerController != null)
-        {
-            wasPlayerEnabled = playerController.enabled;
-            playerController.enabled = false;
-            Debug.Log("Player movement paused");
-        }
-        else
-        {
-            Debug.LogWarning("PlayerController not assigned - cannot pause movement");
-        }
+        //if (playerController != null)
+        //{
+        //    wasPlayerEnabled = playerController.enabled;
+        //    playerController.enabled = false;
+        //    Debug.Log("Player movement paused");
+        //}
+        //else
+        //{
+        //    Debug.LogWarning("PlayerController not assigned - cannot pause movement");
+        //}
     }
 
     private void ResumePlayer()
     {
-        if (playerController != null)
-        {
-            playerController.enabled = wasPlayerEnabled;
-            Debug.Log("Player movement resumed");
-        }
+        //if (playerController != null)
+        //{
+        //    playerController.enabled = wasPlayerEnabled;
+        //    Debug.Log("Player movement resumed");
+        //}
     }
 
     // Public method for UI buttons to call

@@ -1,8 +1,5 @@
 using UnityEngine;
 using System.Collections.Generic;
-using HurricaneVR.Framework.Core.Player;
-using HurricaneVR.Framework.ControllerInput;
-
 public class HMD_UIManager : MonoBehaviour
 {
     [Header("XR Rig Reference")]
@@ -10,8 +7,8 @@ public class HMD_UIManager : MonoBehaviour
     public Transform cameraTransform;
 
     [Header("Hurricane VR References")]
-    public HVRPlayerController playerController;
-    public HVRPlayerInputs playerInputs;
+    //public PlayerController playerController;
+    //public HVRPlayerInputs playerInputs;
 
     [Header("UI References")]
     public Canvas openingUICanvas;
@@ -257,31 +254,31 @@ public class HMD_UIManager : MonoBehaviour
 
     private void PausePlayerMovement()
     {
-        if (playerController != null)
-        {
-            // Backup current state
-            wasPlayerMovementEnabled = playerController.enabled;
+        //if (playerController != null)
+        //{
+        //    // Backup current state
+        //    wasPlayerMovementEnabled = playerController.enabled;
 
-            // Disable player controller to prevent movement and turning
-            playerController.enabled = false;
+        //    // Disable player controller to prevent movement and turning
+        //    playerController.enabled = false;
 
-            Debug.Log("Player movement paused for Letter UI");
-        }
-        else
-        {
-            Debug.LogWarning("PlayerController reference not assigned - cannot pause movement");
-        }
+        //    Debug.Log("Player movement paused for Letter UI");
+        //}
+        //else
+        //{
+        //    Debug.LogWarning("PlayerController reference not assigned - cannot pause movement");
+        //}
     }
 
     private void ResumePlayerMovement()
     {
-        if (playerController != null)
-        {
-            // Restore player controller state
-            playerController.enabled = wasPlayerMovementEnabled;
+        //if (playerController != null)
+        //{
+        //    // Restore player controller state
+        //    playerController.enabled = wasPlayerMovementEnabled;
 
-            Debug.Log("Player movement resumed after Letter UI");
-        }
+        //    Debug.Log("Player movement resumed after Letter UI");
+        //}
     }
 
     private void HideAllUIs()
@@ -306,10 +303,10 @@ public class HMD_UIManager : MonoBehaviour
             Debug.LogError("XR Rig or Camera Transform not assigned to HMD_UI_Manager!");
         }
 
-        if (playerController == null)
-        {
-            Debug.LogWarning("PlayerController not assigned - Letter UI pause functionality won't work");
-        }
+        //if (playerController == null)
+        //{
+        //    Debug.LogWarning("PlayerController not assigned - Letter UI pause functionality won't work");
+        //}
     }
     #endregion
 
