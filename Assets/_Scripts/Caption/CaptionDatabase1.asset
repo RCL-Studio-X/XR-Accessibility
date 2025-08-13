@@ -16,18 +16,7 @@ MonoBehaviour:
   - audioClip: {fileID: 8300000, guid: 7213fd40d10699f469019f7ed9fac63e, type: 3}
     srtFile: {fileID: 4900000, guid: 5e239a655f4b525458a29a56ed4f7f75, type: 3}
     captionPrefab: {fileID: 2104606985241026467, guid: 26be1020ef27d0142a6456b6d50242e6, type: 3}
-    uiType: 0
-    customTarget: {fileID: 0}
-    overrideGlobalSettings: 0
-    customShowCaptions: 0
-    customDestroyOnStop: 0
   - audioClip: {fileID: 8300000, guid: f92726b5d16d1b1478162131efe55549, type: 3}
     srtFile: {fileID: 4900000, guid: 1d3a240e83895c24593f905dad64d4bb, type: 3}
-    captionPrefab: {fileID: 2104606985241026467, guid: 26be1020ef27d0142a6456b6d50242e6, type: 3}
-    uiType: 0
-    customTarget: {fileID: 0}
-    overrideGlobalSettings: 0
-    customShowCaptions: 0
-    customDestroyOnStop: 0
+    captionPrefab: {fileID: 9163751519960698577, guid: a02f3d5adfcc2c042bedc6e1cd891b33, type: 3}
   defaultCaptionPrefab: {fileID: 2104606985241026467, guid: 26be1020ef27d0142a6456b6d50242e6, type: 3}
-  defaultUIType: 0
