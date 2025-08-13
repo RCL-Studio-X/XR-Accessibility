@@ -531,3 +531,5 @@ public class CaptionManager : MonoBehaviour
 
     #endregion
 }
+
+
