@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: d9eb201fc2c18554880117baf97823ae
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Inknut Antiqua
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: b99871783ee8d6d4383e404d36d1eee1, type: 3}
+  - {fileID: 12800000, guid: 62d56d2ec1621534daf89f246b8928dc, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
