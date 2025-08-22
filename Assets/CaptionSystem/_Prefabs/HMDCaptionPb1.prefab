@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2104606985241026141}
   - component: {fileID: 2444245425921750424}
   m_Layer: 5
-  m_Name: CaptionUICanvas1
+  m_Name: HMDCaptionPb1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
