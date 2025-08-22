@@ -1,0 +1,33 @@
+1
+00:00:00,000 --> 00:00:02,860
+Hello there! I am demonstrating the
+character caption.
+
+2
+00:00:03,140 --> 00:00:06,020
+My captions remain positioned relative to
+my location.
+
+3
+00:00:06,300 --> 00:00:10,420
+This caption type is ideal for non-player
+characters, environmental storytelling,
+
+4
+00:00:10,600 --> 00:00:14,460
+or any audio source that should stay
+anchored to a specific object in your
+
+5
+00:00:14,460 --> 00:00:18,980
+scene. The system automatically detects my
+audio and displays captions using the
+
+6
+00:00:18,980 --> 00:00:23,160
+prefab assigned. Developers can configure
+different prefab types in the caption
+
+7
+00:00:23,160 --> 00:00:23,480
+database.

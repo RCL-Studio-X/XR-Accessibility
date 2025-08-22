@@ -1,0 +1,68 @@
+1
+00:00:00,000 --> 00:00:04,180
+Welcome to the Caption Toolkit
+demonstration. This scene showcases an
+
+2
+00:00:04,180 --> 00:00:08,140
+automated caption system designed for
+Unity developers working on XR
+
+3
+00:00:08,140 --> 00:00:12,940
+applications. You are currently
+experiencing head-mounted display captions
+
+4
+00:00:12,940 --> 00:00:17,820
+that follow your view. These captions
+automatically appear when audio content is
+
+5
+00:00:17,820 --> 00:00:22,400
+detected, require no manual setup, and
+support multiple simultaneous
+
+6
+00:00:22,400 --> 00:00:26,420
+audio sources. The system includes
+automatic audio discovery,
+
+7
+00:00:26,940 --> 00:00:30,980
+real-time caption synchronization, and
+flexible UI positioning.
+
+8
+00:00:31,909 --> 00:00:36,040
+Developers can simply drag audio clips and
+SRT files into a database,
+
+9
+00:00:36,380 --> 00:00:40,240
+assign caption prefabs, and the system
+handles everything else.
+
+10
+00:00:40,420 --> 00:00:43,880
+In this demo, you will see captions that
+move with your head,
+
+11
+00:00:44,140 --> 00:00:46,660
+captions that stay fixed to characters in
+the scene,
+
+12
+00:00:46,840 --> 00:00:51,600
+and how the system seamlessly manages
+multiple audio sources without conflicts.
+
+13
+00:00:51,800 --> 00:00:56,160
+The Toolkit is designed for easy
+integration into existing projects with
+
+14
+00:00:56,160 --> 00:00:57,780
+minimal code changes required.
