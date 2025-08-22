@@ -10,3 +10,7 @@ Video downloaded from [Speechpad](https://www.speechpad.com/captions/srt)
 
 Audio converted from video using [Cloudconvert](https://www.speechpad.com/captions/srt)
 
+Audio Generation by [Toucan TTS](https://huggingface.co/spaces/Flux9665/MassivelyMultilingualTTS) & [FishSpeech](https://fish.audio/zh-CN/text-to-speech/)
+
+Audio to SRT using [Transcri](https://transcri.io/en/subtitle-generator) & [Maestra](https://maestra.ai/tools/subtitle-generator/srt-generator)
+
