@@ -13,8 +13,12 @@ public class GlobalCaptionManager : MonoBehaviour
     [SerializeField] private float discoveryUpdateRate = 1.5f;
     [SerializeField] private bool monitorNewAudioSources = true;
 
+    [Header("Caption Control")]
+    [SerializeField] private bool captionsEnabled = true;
+
     [Header("Debug Settings")]
     [SerializeField] private bool enableDebugLogs = true;
+
 
     // Active caption sessions - now managed directly
     private Dictionary<AudioSource, CaptionSession> activeSessions = new Dictionary<AudioSource, CaptionSession>();
@@ -179,6 +183,8 @@ public class GlobalCaptionManager : MonoBehaviour
 
     private void ShowCaption(CaptionSession session, CaptionEntry caption)
     {
+        if (!captionsEnabled) return;
+
         LogDebug($"Showing caption: [{caption.speaker}] {caption.text}");
 
         // Show canvas when there's an active caption
@@ -522,6 +528,34 @@ public class GlobalCaptionManager : MonoBehaviour
     #endregion
 
     #region Public API
+
+    /// <summary>
+    /// Enable or disable all captions
+    /// </summary>
+    public void SetCaptionsEnabled(bool enabled)
+    {
+        captionsEnabled = enabled;
+
+        // Hide all active captions when disabled
+        if (!enabled)
+        {
+            foreach (var session in activeSessions.Values)
+            {
+                if (session.captionCanvas != null && session.captionCanvas.gameObject.activeInHierarchy)
+                {
+                    session.captionCanvas.gameObject.SetActive(false);
+                }
+            }
+        }
+    }
+
+    /// <summary>
+    /// Toggle captions on/off
+    /// </summary>
+    public void ToggleCaptions()
+    {
+        SetCaptionsEnabled(!captionsEnabled);
+    }
 
     /// <summary>
     /// Set the caption database to use
