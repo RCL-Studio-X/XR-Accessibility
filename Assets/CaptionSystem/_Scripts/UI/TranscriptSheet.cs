@@ -24,6 +24,13 @@ public class TranscriptSheet : MonoBehaviour, IUIBehavior
     [Header("Auto-Scroll")]
     [SerializeField] private bool autoScrollToCurrentCaption = true;
     [SerializeField] private float scrollSpeed = 5f;
+    [SerializeField] private bool centerCurrentCaption = true;
+
+    [Header("Content Panel Sizing")]
+    [SerializeField] private bool adjustPanelSize = true;
+    [SerializeField] private float topPadding = 100f; // Space above first entry
+    [SerializeField] private float bottomPadding = 100f; // Space below last entry
+    [SerializeField] private float minContentHeight = 200f; // Minimum panel height
 
     [Header("Optional Features")]
     [SerializeField] private bool allowClickToSeek = false; // Click caption to jump to that time
@@ -338,7 +345,87 @@ public class TranscriptSheet : MonoBehaviour, IUIBehavior
             entryUIElements.Add(entryUI);
         }
 
+        // Adjust content panel size after all entries are created
+        if (adjustPanelSize)
+        {
+            StartCoroutine(AdjustContentPanelSizeDelayed());
+        }
+
         Debug.Log($"TranscriptSheet: Created {entryUIElements.Count} UI elements");
+    }
+
+    /// <summary>
+    /// Adjust the content panel size to fit all transcript entries with proper padding
+    /// This allows better centering of captions during scrolling
+    /// </summary>
+    private System.Collections.IEnumerator AdjustContentPanelSizeDelayed()
+    {
+        // Wait for layout to calculate
+        yield return null;
+        Canvas.ForceUpdateCanvases();
+        yield return null;
+
+        AdjustContentPanelSize();
+    }
+
+    private void AdjustContentPanelSize()
+    {
+        if (contentContainer == null || scrollRect == null) return;
+
+        // Force layout update
+        Canvas.ForceUpdateCanvases();
+        LayoutRebuilder.ForceRebuildLayoutImmediate(contentContainer);
+
+        // Get the natural height of all content
+        float naturalHeight = 0f;
+        VerticalLayoutGroup layoutGroup = contentContainer.GetComponent<VerticalLayoutGroup>();
+
+        if (layoutGroup != null)
+        {
+            // Calculate total height from entries and spacing
+            float totalEntryHeight = 0f;
+            foreach (var entry in entryUIElements)
+            {
+                if (entry != null)
+                {
+                    RectTransform rect = entry.GetComponent<RectTransform>();
+                    if (rect != null)
+                    {
+                        totalEntryHeight += rect.rect.height;
+                    }
+                }
+            }
+
+            float spacing = layoutGroup.spacing * Mathf.Max(0, entryUIElements.Count - 1);
+            float padding = layoutGroup.padding.top + layoutGroup.padding.bottom;
+            naturalHeight = totalEntryHeight + spacing + padding;
+        }
+        else
+        {
+            // Fallback: use content's preferred height
+            naturalHeight = LayoutUtility.GetPreferredHeight(contentContainer);
+        }
+
+        // Add top and bottom padding for better scrolling/centering
+        float viewportHeight = scrollRect.viewport.rect.height;
+        float desiredHeight = naturalHeight + topPadding + bottomPadding;
+
+        // Ensure minimum height
+        desiredHeight = Mathf.Max(desiredHeight, minContentHeight, viewportHeight);
+
+        // Set the content container size
+        Vector2 sizeDelta = contentContainer.sizeDelta;
+        sizeDelta.y = desiredHeight;
+        contentContainer.sizeDelta = sizeDelta;
+
+        // Adjust padding in the layout group to center content
+        if (layoutGroup != null)
+        {
+            layoutGroup.padding.top = (int)topPadding;
+            layoutGroup.padding.bottom = (int)bottomPadding;
+        }
+
+        Debug.Log($"TranscriptSheet: Adjusted content panel size to {desiredHeight} (natural: {naturalHeight}, viewport: {viewportHeight})");
     }
 
     private void ClearTranscriptUI()
@@ -416,23 +503,41 @@ public class TranscriptSheet : MonoBehaviour, IUIBehavior
 
         Canvas.ForceUpdateCanvases();
 
-        // Calculate normalized position (0 = bottom, 1 = top)
-        float entryY = -entryRect.anchoredPosition.y;
-        float contentHeight = contentContainer.rect.height;
+        // Get viewport and content dimensions
         float viewportHeight = scrollRect.viewport.rect.height;
+        float contentHeight = contentContainer.rect.height;
 
+        // Calculate the position of the entry relative to content container
+        float entryY = -entryRect.anchoredPosition.y;
+        float entryHeight = entryRect.rect.height;
+
+        float targetY;
+
+        if (centerCurrentCaption)
+        {
+            // Center the entry in the viewport
+            targetY = entryY - (viewportHeight / 2f) + (entryHeight / 2f);
+        }
+        else
+        {
+            // Just ensure entry is visible (scroll to top of entry)
+            targetY = entryY;
+        }
+
+        // Convert to normalized position (0 = bottom, 1 = top)
+        float normalizedPosition = 1f;
         if (contentHeight > viewportHeight)
         {
-            float normalizedPosition = Mathf.Clamp01(entryY / (contentHeight - viewportHeight));
-
-            // Smooth scroll
-            float targetPosition = 1f - normalizedPosition;
-            scrollRect.verticalNormalizedPosition = Mathf.Lerp(
-                scrollRect.verticalNormalizedPosition,
-                targetPosition,
-                scrollSpeed * Time.deltaTime
-            );
+            normalizedPosition = Mathf.Clamp01(targetY / (contentHeight - viewportHeight));
+            normalizedPosition = 1f - normalizedPosition; // Invert for Unity's scroll system
         }
+
+        // Smooth scroll to target position
+        scrollRect.verticalNormalizedPosition = Mathf.Lerp(
+            scrollRect.verticalNormalizedPosition,
+            normalizedPosition,
+            scrollSpeed * Time.deltaTime
+        );
     }
 
     #endregion
@@ -500,6 +605,39 @@ public class TranscriptSheet : MonoBehaviour, IUIBehavior
     public void SetAutoScroll(bool enabled)
     {
         autoScrollToCurrentCaption = enabled;
+    }
+
+    /// <summary>
+    /// Toggle centering of current caption
+    /// </summary>
+    public void SetCenterCurrentCaption(bool enabled)
+    {
+        centerCurrentCaption = enabled;
+    }
+
+    /// <summary>
+    /// Set padding values for content panel
+    /// </summary>
+    public void SetContentPadding(float top, float bottom)
+    {
+        topPadding = top;
+        bottomPadding = bottom;
+
+        if (entryUIElements.Count > 0)
+        {
+            AdjustContentPanelSize();
+        }
+    }
+
+    /// <summary>
+    /// Manually trigger content panel size adjustment
+    /// </summary>
+    public void RefreshPanelSize()
+    {
+        if (entryUIElements.Count > 0)
+        {
+            AdjustContentPanelSize();
+        }
     }
 
     /// <summary>
