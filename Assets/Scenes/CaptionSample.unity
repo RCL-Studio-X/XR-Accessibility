@@ -658,6 +658,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 34197604}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &328016689 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2307298762578196743, guid: 12b44029b7ccbbc4bbb71fcbf85fecc7, type: 3}
+  m_PrefabInstance: {fileID: 8278062605044162272}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1aa08ab6e0800fa44ae55d278d1423e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &354964818
 GameObject:
   m_ObjectHideFlags: 0
@@ -1372,6 +1383,11 @@ VideoPlayer:
   m_WaitForFirstFrame: 1
   m_FrameReadyEventEnabled: 0
   m_VideoShaders: []
+--- !u!224 &1185560427 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 6435795226622308432, guid: 12b44029b7ccbbc4bbb71fcbf85fecc7, type: 3}
+  m_PrefabInstance: {fileID: 8278062605044162272}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1228367070
 GameObject:
   m_ObjectHideFlags: 0
@@ -2541,6 +2557,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5786496195189810555, guid: 12b44029b7ccbbc4bbb71fcbf85fecc7, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5786496195189810555, guid: 12b44029b7ccbbc4bbb71fcbf85fecc7, type: 3}
       propertyPath: scrollSpeed
       value: 50
       objectReference: {fileID: 0}
@@ -2587,6 +2607,10 @@ PrefabInstance:
     - target: {fileID: 5786496195189810555, guid: 12b44029b7ccbbc4bbb71fcbf85fecc7, type: 3}
       propertyPath: normalBackgroundColor.a
       value: 0.21176471
+      objectReference: {fileID: 0}
+    - target: {fileID: 5786496195189810555, guid: 12b44029b7ccbbc4bbb71fcbf85fecc7, type: 3}
+      propertyPath: autoScrollToCurrentCaption
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5786496195189810555, guid: 12b44029b7ccbbc4bbb71fcbf85fecc7, type: 3}
       propertyPath: highlightedBackgroundColor.b
@@ -2836,6 +2860,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8361203025106546834, guid: 12b44029b7ccbbc4bbb71fcbf85fecc7, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8278062605044162274}
+    - targetCorrespondingSourceObject: {fileID: 8361203025106546834, guid: 12b44029b7ccbbc4bbb71fcbf85fecc7, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8278062605044162281}
   m_SourcePrefab: {fileID: 100100000, guid: 12b44029b7ccbbc4bbb71fcbf85fecc7, type: 3}
 --- !u!1 &8278062605044162273 stripped
 GameObject:
@@ -2861,6 +2888,25 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RaycastTriggerInteraction: 1
+--- !u!114 &8278062605044162281
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8278062605044162273}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 413068d1510fc3e43826cef081f0d937, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scrollRect: {fileID: 328016689}
+  contentContainer: {fileID: 1185560427}
+  transcriptEntryPrefab: {fileID: 8190608090576614826, guid: 1fd2781ad78dee24586433294db7b8ee, type: 3}
+  textColor: {r: 1, g: 1, b: 1, a: 1}
+  backgroundColor: {r: 0, g: 0, b: 0, a: 0.3}
+  autoDetectPlayingAudio: 1
+  manualAudioSource: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
