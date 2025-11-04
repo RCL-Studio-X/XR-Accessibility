@@ -284,7 +284,7 @@ GameObject:
   - component: {fileID: 3729164973803521003}
   - component: {fileID: 404027669922684442}
   m_Layer: 5
-  m_Name: SpeechBallonPb1
+  m_Name: CaptionPb2(Character)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
