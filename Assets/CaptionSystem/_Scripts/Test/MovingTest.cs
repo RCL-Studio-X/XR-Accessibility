@@ -20,7 +20,7 @@ public class MovingTest : MonoBehaviour
         Vector3 movingDir = Vector3.forward;
 
         transform.Translate(movingDir * speed * Time.deltaTime);
-        transform.Rotate(Vector3.up * Time.deltaTime * 45f);
+        transform.Rotate(Vector3.up * Time.deltaTime * 25f);
     }
 
 }

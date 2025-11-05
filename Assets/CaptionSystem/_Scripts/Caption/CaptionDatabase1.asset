@@ -13,16 +13,20 @@ MonoBehaviour:
   m_Name: CaptionDatabase1
   m_EditorClassIdentifier: 
   captionEntries:
-  - audioClip: {fileID: 8300000, guid: 7213fd40d10699f469019f7ed9fac63e, type: 3}
-    srtFile: {fileID: 4900000, guid: 5e239a655f4b525458a29a56ed4f7f75, type: 3}
-    captionPrefab: {fileID: 2104606985241026467, guid: 26be1020ef27d0142a6456b6d50242e6, type: 3}
   - audioClip: {fileID: 8300000, guid: 37738012a733c0643a2bb6cb755e9375, type: 3}
+    videoClip: {fileID: 0}
     srtFile: {fileID: 4900000, guid: ae16856cbad843340b1fbc384b9f63cc, type: 3}
     captionPrefab: {fileID: 4801486860229264006, guid: f4852a8124d2d044993bb2247b79e90a, type: 3}
   - audioClip: {fileID: 8300000, guid: ea98c6e32e055294d85e83d8fdc7b963, type: 3}
+    videoClip: {fileID: 0}
     srtFile: {fileID: 4900000, guid: 27922d7277bba87408a8ea680c0ed010, type: 3}
     captionPrefab: {fileID: 2104606985241026467, guid: 26be1020ef27d0142a6456b6d50242e6, type: 3}
   - audioClip: {fileID: 8300000, guid: f92726b5d16d1b1478162131efe55549, type: 3}
+    videoClip: {fileID: 0}
     srtFile: {fileID: 4900000, guid: 1d3a240e83895c24593f905dad64d4bb, type: 3}
     captionPrefab: {fileID: 2104606985241026467, guid: 26be1020ef27d0142a6456b6d50242e6, type: 3}
+  - audioClip: {fileID: 0}
+    videoClip: {fileID: 32900000, guid: 28ee8ec069166894983fe4da1d6a5767, type: 3}
+    srtFile: {fileID: 4900000, guid: 5e239a655f4b525458a29a56ed4f7f75, type: 3}
+    captionPrefab: {fileID: 6865956919471005744, guid: 5dd7307826acf114eba9eb28b0118fa3, type: 3}
   defaultCaptionPrefab: {fileID: 2104606985241026467, guid: 26be1020ef27d0142a6456b6d50242e6, type: 3}
