@@ -8,7 +8,7 @@ using System.Collections.Generic;
 /// Automatically detects and displays transcripts for any playing audio with captions in the database
 /// </summary>
 [RequireComponent(typeof(Canvas))]
-public class TranscriptSheet : MonoBehaviour, IUIBehavior
+public class CaptionHistory : MonoBehaviour, IUIBehavior
 {
     [Header("UI References")]
     [SerializeField] private ScrollRect scrollRect;
