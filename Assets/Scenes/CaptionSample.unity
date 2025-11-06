@@ -3710,7 +3710,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: ea98c6e32e055294d85e83d8fdc7b963, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -4974,7 +4974,7 @@ MonoBehaviour:
       m_Calls: []
   m_AttachTransform: {fileID: 0}
   m_SecondaryAttachTransform: {fileID: 0}
-  m_UseDynamicAttach: 0
+  m_UseDynamicAttach: 1
   m_MatchAttachPosition: 1
   m_MatchAttachRotation: 1
   m_SnapToColliderVolume: 1
@@ -5321,12 +5321,48 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2346052053102557268, guid: 12b44029b7ccbbc4bbb71fcbf85fecc7, type: 3}
+      propertyPath: m_Color.b
+      value: 0.2754717
+      objectReference: {fileID: 0}
+    - target: {fileID: 2346052053102557268, guid: 12b44029b7ccbbc4bbb71fcbf85fecc7, type: 3}
+      propertyPath: m_Color.g
+      value: 0.2754717
+      objectReference: {fileID: 0}
+    - target: {fileID: 2346052053102557268, guid: 12b44029b7ccbbc4bbb71fcbf85fecc7, type: 3}
+      propertyPath: m_Color.r
+      value: 0.2754717
+      objectReference: {fileID: 0}
     - target: {fileID: 5786496195189810555, guid: 12b44029b7ccbbc4bbb71fcbf85fecc7, type: 3}
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5786496195189810555, guid: 12b44029b7ccbbc4bbb71fcbf85fecc7, type: 3}
       propertyPath: allowClickToSeek
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5786496195189810555, guid: 12b44029b7ccbbc4bbb71fcbf85fecc7, type: 3}
+      propertyPath: normalTextColor.b
+      value: 0.690566
+      objectReference: {fileID: 0}
+    - target: {fileID: 5786496195189810555, guid: 12b44029b7ccbbc4bbb71fcbf85fecc7, type: 3}
+      propertyPath: normalTextColor.g
+      value: 0.690566
+      objectReference: {fileID: 0}
+    - target: {fileID: 5786496195189810555, guid: 12b44029b7ccbbc4bbb71fcbf85fecc7, type: 3}
+      propertyPath: normalTextColor.r
+      value: 0.690566
+      objectReference: {fileID: 0}
+    - target: {fileID: 5786496195189810555, guid: 12b44029b7ccbbc4bbb71fcbf85fecc7, type: 3}
+      propertyPath: highlightedTextColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5786496195189810555, guid: 12b44029b7ccbbc4bbb71fcbf85fecc7, type: 3}
+      propertyPath: highlightedTextColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5786496195189810555, guid: 12b44029b7ccbbc4bbb71fcbf85fecc7, type: 3}
+      propertyPath: highlightedTextColor.r
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5786496195189810555, guid: 12b44029b7ccbbc4bbb71fcbf85fecc7, type: 3}

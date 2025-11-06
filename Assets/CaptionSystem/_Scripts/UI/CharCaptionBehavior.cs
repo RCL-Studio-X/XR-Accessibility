@@ -17,10 +17,6 @@ public class CharCaptionBehavior : MonoBehaviour, IUIBehavior
     public float followSpeed = 5f;
     public float rotationSpeed = 8f;
 
-    [Header("Distance Constraints")]
-    public float minDistanceFromPlayer = 0.5f;
-    public float maxDistanceFromPlayer = 5f;
-
     private Canvas canvas;
     private bool isActive = false;
     private Transform playerCamera;
@@ -138,14 +134,6 @@ public class CharCaptionBehavior : MonoBehaviour, IUIBehavior
             Vector3 directionToPlayer = (playerCamera.position - targetPosition).normalized;
             float distanceToPlayer = Vector3.Distance(targetPosition, playerCamera.position);
 
-            if (distanceToPlayer < minDistanceFromPlayer)
-            {
-                targetPosition = playerCamera.position - directionToPlayer * minDistanceFromPlayer;
-            }
-            else if (distanceToPlayer > maxDistanceFromPlayer)
-            {
-                targetPosition = playerCamera.position - directionToPlayer * maxDistanceFromPlayer;
-            }
         }
 
         // Apply position

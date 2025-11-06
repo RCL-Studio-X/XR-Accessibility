@@ -419,10 +419,10 @@ MonoBehaviour:
   facePlayer: 1
   constrainToHorizontalRotation: 1
   smoothMovement: 1
-  followSpeed: 5
+  followSpeed: 8
   rotationSpeed: 8
   minDistanceFromPlayer: 0.5
-  maxDistanceFromPlayer: 5
+  maxDistanceFromPlayer: 40
 --- !u!114 &404027669922684442
 MonoBehaviour:
   m_ObjectHideFlags: 0
