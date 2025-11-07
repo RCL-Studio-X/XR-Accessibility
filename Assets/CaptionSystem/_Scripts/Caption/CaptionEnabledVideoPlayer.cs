@@ -1,7 +1,12 @@
 using UnityEngine;
+using UnityEngine.Video;
 
-[RequireComponent(typeof(AudioSource))]
-public class CaptionEnabledAudioSource : MonoBehaviour
+/// <summary>
+/// Makes a VideoPlayer component caption-aware by registering with GlobalCaptionManager
+/// Similar to CaptionEnabledAudioSource but for video content
+/// </summary>
+[RequireComponent(typeof(VideoPlayer))]
+public class CaptionEnabledVideoPlayer : MonoBehaviour
 {
     [Header("Caption Configuration")]
     [SerializeField] private CaptionDatabase overrideDatabase;
@@ -9,19 +14,19 @@ public class CaptionEnabledAudioSource : MonoBehaviour
 
     [Header("Manual Caption Assignment")]
     [SerializeField] private bool useManualAssignment = false;
-    [SerializeField] private AudioClip manualAudioClip;
+    [SerializeField] private VideoClip manualVideoClip;
     [SerializeField] private TextAsset manualSRTFile;
 
     [Header("Advanced Settings")]
     [SerializeField] private bool ignoreGlobalDatabase = false;
     [SerializeField] private bool autoRegisterOnStart = true;
 
-    private AudioSource audioSource;
+    private VideoPlayer videoPlayer;
     private bool isRegistered = false;
 
     private void Awake()
     {
-        audioSource = GetComponent<AudioSource>();
+        videoPlayer = GetComponent<VideoPlayer>();
     }
 
     private void Start()
@@ -38,7 +43,7 @@ public class CaptionEnabledAudioSource : MonoBehaviour
     }
 
     /// <summary>
-    /// Register this audio source with the global caption manager
+    /// Register this video player with the global caption manager
     /// </summary>
     public void Register()
     {
@@ -46,17 +51,17 @@ public class CaptionEnabledAudioSource : MonoBehaviour
 
         if (GlobalCaptionManager.Instance != null)
         {
-            GlobalCaptionManager.Instance.RegisterAudioSource(this);
+            GlobalCaptionManager.Instance.RegisterVideoPlayer(this);
             isRegistered = true;
         }
         else
         {
-            Debug.LogWarning($"CaptionEnabledAudioSource on {gameObject.name}: GlobalCaptionManager not found!");
+            Debug.LogWarning($"CaptionEnabledVideoPlayer on {gameObject.name}: GlobalCaptionManager not found!");
         }
     }
 
     /// <summary>
-    /// Unregister this audio source from the global caption manager
+    /// Unregister this video player from the global caption manager
     /// </summary>
     public void Unregister()
     {
@@ -64,18 +69,18 @@ public class CaptionEnabledAudioSource : MonoBehaviour
 
         if (GlobalCaptionManager.Instance != null)
         {
-            GlobalCaptionManager.Instance.UnregisterAudioSource(this);
+            GlobalCaptionManager.Instance.UnregisterVideoPlayer(this);
         }
 
         isRegistered = false;
     }
 
     /// <summary>
-    /// Get the caption configuration for the currently assigned audio clip
+    /// Get the caption configuration for the currently assigned video clip
     /// </summary>
     public CaptionDatabase.CaptionEntry GetCaptionEntry()
     {
-        AudioClip clipToCheck = useManualAssignment ? manualAudioClip : audioSource.clip;
+        VideoClip clipToCheck = useManualAssignment ? manualVideoClip : videoPlayer.clip;
 
         if (clipToCheck == null) return null;
 
@@ -84,7 +89,7 @@ public class CaptionEnabledAudioSource : MonoBehaviour
         {
             return new CaptionDatabase.CaptionEntry
             {
-                audioClip = manualAudioClip,
+                videoClip = manualVideoClip,
                 srtFile = manualSRTFile,
                 captionPrefab = overridePrefab
             };
@@ -93,7 +98,7 @@ public class CaptionEnabledAudioSource : MonoBehaviour
         // Check override database first
         if (overrideDatabase != null)
         {
-            var entry = overrideDatabase.GetEntryForClip(clipToCheck);
+            var entry = overrideDatabase.GetEntryForVideo(clipToCheck);
             if (entry != null)
             {
                 // Apply local overrides to the database entry
@@ -104,7 +109,7 @@ public class CaptionEnabledAudioSource : MonoBehaviour
         // Check global database if not ignoring it
         if (!ignoreGlobalDatabase && GlobalCaptionManager.Instance != null)
         {
-            var globalEntry = GlobalCaptionManager.Instance.GetCaptionDatabase()?.GetEntryForClip(clipToCheck);
+            var globalEntry = GlobalCaptionManager.Instance.GetCaptionDatabase()?.GetEntryForVideo(clipToCheck);
             if (globalEntry != null)
             {
                 return ApplyLocalOverrides(globalEntry);
@@ -122,7 +127,7 @@ public class CaptionEnabledAudioSource : MonoBehaviour
         // Create a copy to avoid modifying the original
         var modifiedEntry = new CaptionDatabase.CaptionEntry
         {
-            audioClip = originalEntry.audioClip,
+            videoClip = originalEntry.videoClip,
             srtFile = originalEntry.srtFile,
             captionPrefab = overridePrefab ?? originalEntry.captionPrefab
         };
@@ -131,32 +136,32 @@ public class CaptionEnabledAudioSource : MonoBehaviour
     }
 
     /// <summary>
-    /// Manually play audio with captions
+    /// Manually play video with captions
     /// </summary>
-    public void PlayWithCaptions(AudioClip clip = null, TextAsset srtFile = null)
+    public void PlayWithCaptions(VideoClip clip = null, TextAsset srtFile = null)
     {
-        AudioClip clipToPlay = clip ?? audioSource.clip;
+        VideoClip clipToPlay = clip ?? videoPlayer.clip;
 
         if (clipToPlay == null)
         {
-            Debug.LogError($"CaptionEnabledAudioSource on {gameObject.name}: No audio clip to play!");
+            Debug.LogError($"CaptionEnabledVideoPlayer on {gameObject.name}: No video clip to play!");
             return;
         }
 
         // Set the clip if provided
         if (clip != null)
         {
-            audioSource.clip = clip;
+            videoPlayer.clip = clip;
         }
 
-        // Start audio
-        audioSource.Play();
+        // Start video
+        videoPlayer.Play();
 
         // Setup captions manually if SRT provided
         if (srtFile != null && GlobalCaptionManager.Instance != null)
         {
             GlobalCaptionManager.Instance.StartCaptionsManually(
-                audioSource,
+                videoPlayer,
                 clipToPlay,
                 srtFile,
                 overridePrefab
@@ -165,43 +170,43 @@ public class CaptionEnabledAudioSource : MonoBehaviour
     }
 
     /// <summary>
-    /// Stop audio and captions
+    /// Stop video and captions
     /// </summary>
     public void StopWithCaptions()
     {
-        audioSource.Stop();
+        videoPlayer.Stop();
 
         if (GlobalCaptionManager.Instance != null)
         {
-            GlobalCaptionManager.Instance.StopCaptionsManually(audioSource);
+            GlobalCaptionManager.Instance.StopCaptionsManually(videoPlayer);
         }
     }
 
     /// <summary>
-    /// Check if this audio source currently has active captions
+    /// Check if this video player currently has active captions
     /// </summary>
     public bool HasActiveCaptions()
     {
         if (GlobalCaptionManager.Instance == null) return false;
-        return GlobalCaptionManager.Instance.HasActiveCaptions(audioSource);
+        return GlobalCaptionManager.Instance.HasActiveCaptions(videoPlayer);
     }
 
     /// <summary>
-    /// Get the active caption canvas for this audio source
+    /// Get the active caption canvas for this video player
     /// </summary>
     public Canvas GetActiveCaptionCanvas()
     {
         if (GlobalCaptionManager.Instance == null) return null;
-        return GlobalCaptionManager.Instance.GetCaptionCanvas(audioSource);
+        return GlobalCaptionManager.Instance.GetCaptionCanvas(videoPlayer);
     }
 
     /// <summary>
     /// Set manual caption assignment
     /// </summary>
-    public void SetManualCaptions(AudioClip clip, TextAsset srt, GameObject prefab = null)
+    public void SetManualCaptions(VideoClip clip, TextAsset srt, GameObject prefab = null)
     {
         useManualAssignment = true;
-        manualAudioClip = clip;
+        manualVideoClip = clip;
         manualSRTFile = srt;
 
         if (prefab != null)
@@ -216,8 +221,16 @@ public class CaptionEnabledAudioSource : MonoBehaviour
     public void ClearManualAssignment()
     {
         useManualAssignment = false;
-        manualAudioClip = null;
+        manualVideoClip = null;
         manualSRTFile = null;
+    }
+
+    /// <summary>
+    /// Get the VideoPlayer component
+    /// </summary>
+    public VideoPlayer GetVideoPlayer()
+    {
+        return videoPlayer;
     }
 
 #if UNITY_EDITOR
@@ -228,7 +241,7 @@ public class CaptionEnabledAudioSource : MonoBehaviour
         if (entry != null)
         {
             Debug.Log($"Caption configuration found for {gameObject.name}:\n" +
-                     $"Audio Clip: {entry.audioClip?.name}\n" +
+                     $"Video Clip: {entry.videoClip?.name}\n" +
                      $"SRT File: {entry.srtFile?.name}\n" +
                      $"Prefab: {entry.captionPrefab?.name}");
         }

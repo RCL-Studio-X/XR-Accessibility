@@ -1,9 +1,9 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Canvas))]
-public class CharCaptionBehavior : MonoBehaviour, IUIBehavior
+public class AnchoredCaptionBehavior : MonoBehaviour, IUIBehavior
 {
-    [Header("Character Following")]
+    [Header("Object Following")]
     public Transform characterTransform; // Will be auto-assigned to audio source transform
     public Vector3 offset = Vector3.up * 0.5f; // Offset above character
     public bool followCharacterMovement = true;
