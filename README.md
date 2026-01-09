@@ -25,7 +25,7 @@ This Unity project provides a comprehensive **Caption System** for VR experience
 - Multi-language support
 
 ### Learn More
-- Watch the [https://youtu.be/qiRdbVUyIlg](#) or read this [blog post](https://www.library.rochester.edu/studio-x/projects/xr-caption-toolkit)
+- Watch the [demo video](https://youtu.be/qiRdbVUyIlg) or read this [blog post](https://www.library.rochester.edu/studio-x/projects/xr-caption-toolkit)
 - Download the package from [this link](#)
 
 ---
