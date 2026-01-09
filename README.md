@@ -38,9 +38,9 @@ This Unity project provides a comprehensive **Caption System** for VR experience
 
 
 ### Setup Instructions
-1. Clone the repository: `git clone [repo-url]`
+1. Clone the repository
 2. Open the project in Unity Hub
-3. Open the main scene: `Assets/CaptionSystem/_Scene/[YourScene].unity`
+3. Open the demo scene: `Assets/CaptionSystem/_Scene/CaptionSample.unity`
 4. Add the **CaptionSetup** prefab to your scene (located in `Assets/CaptionSystem/_Prefabs/`)
 5. Configure the Caption Database asset (see Caption System Setup below)
 
