@@ -14,19 +14,16 @@ This Unity project provides a comprehensive **Caption System** for VR experience
 - Real-time synchronization with media playback
 - Multiple caption UI modes (fixed, anchored, HMD-following)
 - Full transcript viewer with timestamp navigation
-- Caption history for reviewing dialogue
-- SRT file format support (industry standard)
-- Runtime configuration and manual override options
 
 ### Use Cases
-- Accessibility for deaf/hard-of-hearing users
+- Accessibility for hard-of-hearing users
 - Narrative-driven VR experiences
 - Tutorial and educational content
-- Multi-language support
 
 ### Learn More
 - Watch the [demo video](https://youtu.be/qiRdbVUyIlg) or read this [blog post](https://www.library.rochester.edu/studio-x/projects/xr-caption-toolkit)
-- Download the package from [this link](#)
+- Download the unity package from [this link](#)
+- Documentation [website](https://rcl-studio-x.github.io/XR-Accessibility/index.html)
 
 ---
 
@@ -38,8 +35,8 @@ This Unity project provides a comprehensive **Caption System** for VR experience
 
 
 ### Setup Instructions
-1. Clone the repository
-2. Open the project in Unity Hub
+1. Clone the repository / Download the unity package
+2. Open the project in Unity Hub / import the package to your project
 3. Open the demo scene: `Assets/CaptionSystem/_Scene/CaptionSample.unity`
 4. Add the **CaptionSetup** prefab to your scene (located in `Assets/CaptionSystem/_Prefabs/`)
 5. Configure the Caption Database asset (see Caption System Setup below)
@@ -47,14 +44,6 @@ This Unity project provides a comprehensive **Caption System** for VR experience
 ---
 
 ## Caption System
-
-### Key Features
-- **Automatic Detection**: Automatically detects and captions AudioSource and VideoPlayer components
-- **SRT File Support**: Standard SubRip (.srt) format for easy caption creation
-- **Multiple UI Modes**: TV-style, character-attached, and HMD-based caption displays
-- **Transcript Viewer**: Full scrollable transcript with timestamp navigation
-- **Caption History**: Persistent caption log for reviewing past dialogue
-- **Flexible Configuration**: Database-driven system with override capabilities
 
 ### Quick Setup Guide
 
@@ -151,23 +140,6 @@ This Unity project provides a comprehensive **Caption System** for VR experience
 - `SmoothFollowBehavior.cs` - Smooth camera-following caption positioning
 - `ResizeCaptionUI.cs` - Dynamic UI scaling based on content
 - `RenderOnTop.cs` - Ensures captions render above other UI elements
-
-### Configuration Options
-
-**GlobalCaptionManager Settings:**
-- **Auto-Discover Audio Sources**: Automatically detect and caption audio
-- **Auto-Discover Video Players**: Automatically detect and caption video
-- **Discovery Update Rate**: How often to scan for new media sources
-- **Monitor New Sources**: Continuously check for new sources at runtime
-- **Captions Enabled**: Global on/off toggle
-- **Enable Debug Logs**: Detailed logging for troubleshooting
-
-**CaptionEnabled Component Settings:**
-- **Override Database**: Use a different database for this component
-- **Override Prefab**: Use custom caption UI for this source
-- **Manual Assignment**: Manually specify audio/video and SRT file
-- **Ignore Global Database**: Only use manual or override settings
-- **Auto-Register On Start**: Automatically register with manager on start
 
 ---
 
