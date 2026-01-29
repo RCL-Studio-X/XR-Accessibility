@@ -35,10 +35,10 @@ This Unity project provides a comprehensive **Caption System** for VR experience
 
 
 ### Setup Instructions
-1. Clone the repository / Download the unity package
+1. Clone the repository / Download the unity package from "Release"
 2. Open the project in Unity Hub / import the package to your project
-3. Open the demo scene: `Assets/CaptionSystem/_Scene/CaptionSample.unity`
-4. Add the **CaptionSetup** prefab to your scene (located in `Assets/CaptionSystem/_Prefabs/`)
+3. Open and check demo scene for reference: `Assets/CaptionSystem/_Scene/CaptionSample.unity` (Make sure **Kawaii Slimes** - Character assets is in the project, if not, download from unity asset store)
+4. Add the **CaptionSetup** prefab to your own scene (located in `Assets/CaptionSystem/_Prefabs/`)
 5. Configure the Caption Database asset (see Caption System Setup below)
 
 ---
@@ -134,12 +134,6 @@ This Unity project provides a comprehensive **Caption System** for VR experience
 - Useful for reviewing past dialogue
 - Location: `Assets/CaptionSystem/_Scripts/UI/CaptionHistory.cs`
 - Prefab: `CaptionHistoryCanvas.prefab`
-
-#### UI Behavior Scripts
-- `AnchoredCaptionBehavior.cs` - Anchors captions to specific transforms
-- `SmoothFollowBehavior.cs` - Smooth camera-following caption positioning
-- `ResizeCaptionUI.cs` - Dynamic UI scaling based on content
-- `RenderOnTop.cs` - Ensures captions render above other UI elements
 
 ---
 
