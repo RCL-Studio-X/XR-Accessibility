@@ -81,8 +81,6 @@ This Unity project provides a comprehensive **Caption System** for VR experience
 
 ### Architecture
 
-#### Core Components
-
 **GlobalCaptionManager**
 - Singleton manager that handles all caption operations
 - Auto-discovers AudioSource and VideoPlayer components in the scene
@@ -114,27 +112,6 @@ This Unity project provides a comprehensive **Caption System** for VR experience
 - Similar functionality to CaptionEnabledAudioSource but for video
 - Location: `Assets/CaptionSystem/_Scripts/Caption/CaptionEnabledVideoPlayer.cs`
 
-#### UI Components
-
-**Caption Display Prefabs** (`Assets/CaptionSystem/_Prefabs/`)
-- `CaptionPb1(TV).prefab` - Fixed position TV-style captions
-- `CaptionPb2(Character).prefab` - Captions anchored to character/object
-- `CaptionPb3(HMD).prefab` - Captions that follow the player's HMD
-- `HMDCaptionPb1.prefab` - Alternative HMD-based display
-
-**SimpleTranscriptSheet**
-- Displays full transcript of captions in scrollable format
-- Auto-detects currently playing media
-- Highlights current caption during playback
-- Location: `Assets/CaptionSystem/_Scripts/UI/SimpleTranscriptSheet.cs`
-- Prefabs: `LetterUICanvas.prefab`, `ObjectiveUICanvas.prefab`
-
-**CaptionHistory**
-- Maintains a running log of displayed captions
-- Useful for reviewing past dialogue
-- Location: `Assets/CaptionSystem/_Scripts/UI/CaptionHistory.cs`
-- Prefab: `CaptionHistoryCanvas.prefab`
-
 ---
 
 ## Dependencies
@@ -150,9 +127,3 @@ This Unity project provides a comprehensive **Caption System** for VR experience
 ## Contributors
 - Yvie Zhang
 
----
-
-## License
-[*License information*]
-
----
